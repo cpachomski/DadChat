@@ -14,6 +14,7 @@ defmodule Dadchat.UserController do
 		case Repo.insert(changeset) do
 			{:ok, user} ->
 				conn
+				|> Dadchat.Auth.login(user)
 				|> put_flash(:info, "#{user.username} create!")
 				|> redirect(to: user_path(conn, :index))
 			{:error, changeset} ->
