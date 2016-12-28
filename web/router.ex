@@ -7,6 +7,7 @@ defmodule Dadchat.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Dadchat.Auth, repo: Dadchat.Repo
   end
 
   scope "/", Dadchat do
