@@ -16,7 +16,13 @@
       <header class="header">
         <strong class=' breadcrumb pull-left'>DadChat</strong>
         <ol class='breadcrumb text-right'>
-          <small>menu will go here</small>
+          <%= if @current_user do %>
+            <li><%= @current_user.username %></li>
+            <li><%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %></li>
+          <% else  %>
+            <li><%= link "Sign up", to: user_path(@conn, :new) %></li>
+            <li><%= link "Log in" , to: session_path(@conn, :new) %></li>
+          <% end %>
         </ol>
       </header>
 
