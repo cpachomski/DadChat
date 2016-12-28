@@ -11,4 +11,12 @@ defmodule Dadchat.Auth do
 		user    = user_id && repo.get(User, user_id)
 		assign(conn, :current_user, user)
 	end
+
+	def login(conn, user) do
+		conn
+		|> assign(:current_user, user)
+		|> put_session(:user_id, user.id)
+		# send different session cookie back with different id
+		|> configure_session(renew: true)
+	end
 end
