@@ -2,8 +2,6 @@ defmodule Dadchat.User do
 	use Dadchat.Web, :model
 
 	schema "users" do
-		field :first_name, :string
-		field :last_name, :string
 		field :username, :string
 		field :email, :string
 		field :password, :string, virtual: true
