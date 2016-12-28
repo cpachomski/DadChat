@@ -13,7 +13,7 @@ defmodule Dadchat.User do
 	def changeset(model, params \\ :invalid) do
 		model 
 		|> cast(params, ~w( username email ))
-		|> validate_length(:username, min: 1, max: 20)
+		|> validate_length(:username, min: 3, max: 20)
 		|> unique_constraint(:username)
 		|> unique_constraint(:username)
 	end
