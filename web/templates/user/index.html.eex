@@ -1,0 +1,12 @@
+<h2>All Users</h2>
+<%= link "Create New User", to: user_path(@conn, :new), class: "btn btn-primary" %>
+<hr>
+
+<table class='table'>
+	<%= for user <- @users do %>
+		<tr>
+			<td><%= render "user.html", user: user %></td>
+			<td><%= link "View", to: user_path(@conn, :show, user.id) %></td>
+		</tr>
+	<% end %>
+</table>
