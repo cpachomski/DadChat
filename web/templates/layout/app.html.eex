@@ -12,10 +12,10 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <strong class=' breadcrumb pull-left'>DadChat</strong>
-        <ol class='breadcrumb text-right'>
+    <header class="header">
+      <div>
+        <h1><%= link "DadChat", to: page_path(@conn, :index) %></h1>
+        <ul>
           <%= if @current_user do %>
             <li><%= @current_user.username %></li>
             <li><%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %></li>
@@ -23,8 +23,10 @@
             <li><%= link "Sign up", to: user_path(@conn, :new) %></li>
             <li><%= link "Log in" , to: session_path(@conn, :new) %></li>
           <% end %>
-        </ol>
-      </header>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
