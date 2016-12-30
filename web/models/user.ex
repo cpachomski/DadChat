@@ -7,6 +7,7 @@ defmodule Dadchat.User do
 		field :password, :string, virtual: true
 		field :password_hash, :string
 
+		many_to_many :rooms, Dadchat.Room, join_through: Dadchat.RoomUser
 		timestamps
 	end
 

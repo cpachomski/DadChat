@@ -6,7 +6,7 @@ defmodule Dadchat.Room do
     field :topic, :string
 
 
-    many_to_many :users, Dadchat.User, join_through: "rooms_users"
+    many_to_many :users, Dadchat.User, join_through: Dadchat.RoomUser
     timestamps()
   end
 
