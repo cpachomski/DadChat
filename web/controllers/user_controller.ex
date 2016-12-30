@@ -16,7 +16,7 @@ defmodule Dadchat.UserController do
 				conn
 				|> Dadchat.Auth.login(user)
 				|> put_flash(:info, "#{user.username} create!")
-				|> redirect(to: user_path(conn, :index))
+				|> redirect(to: room_path(conn, :index))
 			{:error, changeset} ->
 				render(conn, "new.html", changeset: changeset)
 		end
