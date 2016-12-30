@@ -30,6 +30,13 @@ defmodule Dadchat.User do
 		|> put_pass_hash()
 	end
 
+	def update_changeset(model, params \\ %{}) do
+		model
+		|> cast(params, ~w( username type password))
+		|> validate_length(:username, min: 3, max: 20)
+		|> registration_changeset(params)
+	end
+
 	defp put_pass_hash(changeset) do
 		case changeset do
 			%Ecto.Changeset{valid?: true, changes: %{ password: p}} ->

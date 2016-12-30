@@ -2,7 +2,7 @@ defmodule Dadchat.UserController do
 	use Dadchat.Web, :controller
 	alias Dadchat.User
 
-	plug :authenticate_user when action in [:index]
+	plug :authenticate_user when action in [:index, :edit]
 
 	def new(conn, _params) do
 		changeset = User.changeset(%User{})
@@ -25,5 +25,20 @@ defmodule Dadchat.UserController do
 	def index(conn, _params) do
 		users = Repo.all(User)
 		render conn, "index.html", users: users
+	end
+
+	def edit(conn, %{"id" => id}) do
+
+		if to_string(conn.assigns.current_user.id) === to_string(id) do
+			user = Repo.get!(User, id)
+			changeset = User.update_changeset(user)
+			render(conn, "edit.html", user: user, changeset: changeset)
+		else
+			conn
+			|> put_flash(:error, "Nope not for you!")
+			|> redirect(to: page_path(conn, :index))
+			|> halt()
+		end
+
 	end
 end

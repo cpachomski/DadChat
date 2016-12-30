@@ -15,7 +15,7 @@ defmodule Dadchat.Router do
 
     get "/", PageController, :index
 
-    resources "/users", UserController, only: [:index, :show, :new, :create]
+    resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/rooms", RoomController
   end

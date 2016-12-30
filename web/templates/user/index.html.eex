@@ -6,9 +6,10 @@
 	<%= for user <- @users do %>
 		<tr>
 			<td><%= user.username %></td>
+			<td>id: <%= user.id %></td>
 			<td><%= user.email %></td>
 			<td><%= user.type %></td>
-			<td><%= link "View", to: user_path(@conn, :show, user.id) %></td>
+			<td><%= link "Edit Account", to: user_path(@conn, :edit, user.id) %></td>
 		</tr>
 	<% end %>
 </table>
