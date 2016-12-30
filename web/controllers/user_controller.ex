@@ -26,15 +26,4 @@ defmodule Dadchat.UserController do
 		users = Repo.all(User)
 		render conn, "index.html", users: users
 	end
-
-	defp authenticate(conn, _opts) do
-		if conn.assigns.current_user do
-			conn
-		else 
-			conn
-			|> put_flash(:error, "You must be logged in to go there")
-			|> redirect(to: page_path(conn, :index))
-			|> halt()
-		end
-	end
 end
