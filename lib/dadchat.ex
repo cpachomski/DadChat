@@ -12,6 +12,7 @@ defmodule Dadchat do
       supervisor(Dadchat.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Dadchat.Endpoint, []),
+      supervisor(Dadchat.Presence, []),
       # Start your own worker by calling: Dadchat.Worker.start_link(arg1, arg2, arg3)
       # worker(Dadchat.Worker, [arg1, arg2, arg3]),
     ]
