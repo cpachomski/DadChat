@@ -16,6 +16,9 @@
 		<%= error_tag f, :email %>
 	</div>
 	<div class="form-group">
+		<%= select f, :type, ["Dad": "dad", "Son": "son"], prompt: "Are you a Dad or a son?" %>
+	</div>
+	<div class="form-group">
 		<%= password_input f, :password, placeholder: "Password", class: "form-control" %>
 		<%= error_tag f, :password %>
 	</div>

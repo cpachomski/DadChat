@@ -6,6 +6,7 @@ defmodule Dadchat.User do
 		field :email, :string
 		field :password, :string, virtual: true
 		field :password_hash, :string
+		field :type, :string
 
 		many_to_many :rooms, Dadchat.Room, join_through: Dadchat.RoomUser, on_delete: :delete_all
 		timestamps
@@ -13,10 +14,11 @@ defmodule Dadchat.User do
 
 	def changeset(model, params \\ :invalid) do
 		model 
-		|> cast(params, ~w( username email ))
+		|> cast(params, ~w( username email type ))
 		|> validate_length(:username, min: 3, max: 20)
 		|> unique_constraint(:username)
 		|> unique_constraint(:email)
+		|> validate_inclusion(:type, ["dad", "son"])
 		|> validate_format(:email, ~r/(\w+)@([\w.]+)/)
 	end
 
