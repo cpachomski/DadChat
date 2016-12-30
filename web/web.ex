@@ -36,6 +36,7 @@ defmodule Dadchat.Web do
 
       import Dadchat.Router.Helpers
       import Dadchat.Gettext
+      import Dadchat.Auth, only: [authenticate_user: 2]
     end
   end
 

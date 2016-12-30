@@ -2,7 +2,7 @@ defmodule Dadchat.UserController do
 	use Dadchat.Web, :controller
 	alias Dadchat.User
 
-	plug :authenticate when action in [:index]
+	plug :authenticate_user when action in [:index]
 
 	def new(conn, _params) do
 		changeset = User.changeset(%User{})
