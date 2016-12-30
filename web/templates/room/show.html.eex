@@ -12,6 +12,15 @@
     <%= @room.topic %>
   </li>
 
+  <ul>
+  	<h3>Users</h3>
+  	<%= for user <- @room.users do %>
+  		<li>
+  			username: <%= user.username %>
+  		</li>
+  	<% end %>
+  </ul>
+
 </ul>
 
 <%= link "Edit", to: room_path(@conn, :edit, @room) %>
