@@ -1,6 +1,7 @@
 defmodule Dadchat.Auth do
 	import Plug.Conn
 	alias Dadchat.User
+	import Phoenix.Controller
 	import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
 	def init(opts) do
@@ -36,6 +37,17 @@ defmodule Dadchat.Auth do
 				dummy_checkpw()
 				{:error, :not_found, conn}
 		end		   	
+	end
+
+	def authenticate_user(conn, _opts) do
+		if conn.assigns.current_user do
+			conn
+		else
+			conn
+			|> put_flash("You must be logged in to access that page")
+			|> redirect(to: Helpers.page_path(conn, :index))
+			|> halt()
+		end
 	end
 
 	def logout(conn) do
