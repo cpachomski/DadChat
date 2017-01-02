@@ -10,17 +10,38 @@
     </tr>
   </thead>
   <tbody>
-<%= for room <- @rooms do %>
-    <tr>
-      <td><%= room.title %></td>
-      <td><%= room.topic %></td>
+    <%= for room <- @rooms do %>
+        <tr>
+          <td><%= room.title %></td>
+          <td><%= room.topic %></td>
 
-      <td class="text-right">
-        <%= link "Show", to: room_path(@conn, :show, room), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: room_path(@conn, :delete, room), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
+          <td class="text-right">
+            <%= link "Show", to: room_path(@conn, :show, room), class: "btn btn-default btn-xs" %>
+            <%= link "Delete", to: room_path(@conn, :delete, room), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h2>Listing invitations</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Invitee Id</th>
+      <th>Sender Id</th>
+      <th>Room Id</th>
     </tr>
-<% end %>
+  </thead>
+  <tbody>
+    <%= for inv <- @invites do  %>
+      <tr>
+        <td><%= inv.invitee %></td>
+        <td><%= inv.sender %></td>
+        <td><%= inv.room %></td>
+      </tr>
+    <% end  %>
   </tbody>
 </table>
 

@@ -12,7 +12,7 @@ defmodule Dadchat.InvitationController do
 
   def create(conn, %{"invitation" => invitation_params}) do
     changeset = Invitation.changeset(%Invitation{}, invitation_params)
-    Logger.debug "#{inspect(invitation_params)}"
+
     case Repo.insert(changeset) do
       {:ok, invitation} ->
         conn

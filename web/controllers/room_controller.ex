@@ -1,7 +1,11 @@
 defmodule Dadchat.RoomController do
   use Dadchat.Web, :controller
+  alias Dadchat.InvitationView
   alias Dadchat.Room
+  alias Dadchat.Invitation
   alias Dadchat.Assoc
+
+  require Logger
 
   plug :authenticate_user when action in [:index, :new, :show]
 
@@ -14,8 +18,10 @@ defmodule Dadchat.RoomController do
 
   def index(conn, _params, user) do
     rooms = Repo.all(user_rooms(user))
+    invites = Repo.all(user_invitations(user))
     
-    render(conn, "index.html", rooms: rooms)
+    Logger.warn "HEY SHIT #{inspect(invites)}"
+    render(conn, "index.html", rooms: rooms, invites: invites)
   end
 
   def new(conn, _params, user) do
@@ -51,5 +57,11 @@ defmodule Dadchat.RoomController do
 
   defp user_rooms(user) do
     assoc(user, :rooms)
+  end
+
+  defp user_invitations(user) do
+    q = from i in "invitations", 
+          where: i.invitee == ^user.id,
+          select: %{invitee: i.invitee, sender: i.sender, room: i.room}
   end
 end
