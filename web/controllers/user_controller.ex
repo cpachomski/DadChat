@@ -35,8 +35,8 @@ defmodule Dadchat.UserController do
 			render(conn, "edit.html", user: user, changeset: changeset)
 		else
 			conn
-			|> put_flash(:error, "Nope not for you!")
-			|> redirect(to: page_path(conn, :index))
+			|> put_flash(:error, "That page is not for you!. I'm gonna have to leave you here.")
+			|> redirect(to: room_path(conn, :index))
 			|> halt()
 		end
 
