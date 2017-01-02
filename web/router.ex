@@ -10,6 +10,10 @@ defmodule Dadchat.Router do
     plug Dadchat.Auth, repo: Dadchat.Repo
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
   scope "/", Dadchat do
     pipe_through :browser
 
@@ -18,5 +22,10 @@ defmodule Dadchat.Router do
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/rooms", RoomController
+  end
+
+  scope "/api/v1", Dadchat do
+    pipe_through :api
+    resources "/invitations", InvitationController
   end
 end

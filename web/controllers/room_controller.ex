@@ -43,9 +43,9 @@ defmodule Dadchat.RoomController do
     end
   end
 
-  def show(conn, %{"id" => id}, _user) do
+  def show(conn, %{"id" => id}, user) do
     room = Repo.get!(Room, id) |> Repo.preload(:users)
-    render(conn, "show.html", room: room)
+    render(conn, "show.html", room: room, user: user)
   end
 
 

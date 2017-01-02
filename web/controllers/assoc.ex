@@ -2,6 +2,7 @@ defmodule Dadchat.Assoc do
 	use Dadchat.Web, :controller
 	alias Dadchat.User
 	alias Dadchat.Room
+	alias Dadchat.Invitation
 
 	def room_to_user(room_id, user_id) do
 		user = Repo.get_by(User, id: user_id) |> Repo.preload(:rooms)
@@ -20,6 +21,5 @@ defmodule Dadchat.Assoc do
 		|> User.changeset(%{})
 		|> Ecto.Changeset.put_assoc(:rooms, changeset_list)
 		|> Repo.update!
-
 	end
 end

@@ -5,7 +5,6 @@ defmodule Dadchat.Room do
     field :title, :string
     field :topic, :string
 
-
     many_to_many :users, Dadchat.User, join_through: Dadchat.RoomUser, on_delete: :delete_all
     timestamps()
   end

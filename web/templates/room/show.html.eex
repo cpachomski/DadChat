@@ -26,9 +26,18 @@
  	</div>
 </div>
 
-
-
-
+<div class='row'>
+	<div class='col-md-8'></div>
+	<div class='col-md-4'>
+		<strong>Invite by userId</strong>
+		<form action="" id="invitationForm">
+			<input type="number" name='invitee'>
+			<input type="hidden" name='sender' value="<%= @current_user.id %>">
+			<input type="hidden" name='room' value="<%= @room.id %>">
+			<input type="submit" value="invite">
+		</form>
+	</div>
+</div>
 
 
 

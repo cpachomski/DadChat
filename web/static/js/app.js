@@ -19,3 +19,8 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import $ from 'jquery'
+import Invitations from "./invitations"
+
+Invitations.init($('#invitationForm'))
